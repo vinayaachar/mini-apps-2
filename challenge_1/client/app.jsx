@@ -12,7 +12,8 @@ class Search extends React.Component {
       searchTerm: '',
       searchData: [],
       pageCount: 0,
-      initial: 0
+      initial: 0,
+      count: 10
     }
     this.onChange = this.onChange.bind(this);
     this.send = this.send.bind(this);
@@ -56,7 +57,7 @@ class Search extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className='container mt-5'>
         <input value = {this.state.searchTerm} onChange={this.onChange} />
         <button onClick={this.send}> Search </button>
         <Events data={this.state.searchData}/>
@@ -65,7 +66,7 @@ class Search extends React.Component {
           nextLabel={'next'}
           breakLabel={'...'}
           breakClassName={'break-me'}
-          pageCount={this.state.pageCount}
+          pageCount={this.state.count}
           marginPagesDisplayed={2}
           pageRangeDisplayed={5}
           onPageChange={this.handlePageClick}
