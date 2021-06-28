@@ -21,20 +21,10 @@ export default class App extends React.Component {
 
     this.handleClick = this.handleClick.bind(this);
     this.handleClick2 = this.handleClick2.bind(this);
+    this.newGame = this.newGame.bind(this);
   }
 
   handleClick(e) {
-    if(this.state.roundScore === 10) {
-      console.log('winner')
-      this.setState({
-        totalScore: 0,
-        totalScore2: 0,
-        player1Score: ['Player 1 Score'],
-        player2Score: ['Player 2 Score'],
-        roundScore: 1
-      })
-      return;
-    }
     if (this.state.frame === 1) {
       this.setState({
         isPlayer1: false,
@@ -88,6 +78,16 @@ export default class App extends React.Component {
 
   }
 
+  newGame(e) {
+    this.setState({
+      totalScore: 0,
+      totalScore2: 0,
+      player1Score: ['Player 1 Score'],
+      player2Score: ['Player 2 Score'],
+      roundScore: 1
+    })
+  }
+
 
   render() {
     return (
@@ -107,7 +107,9 @@ export default class App extends React.Component {
         <Score data = {this.state.player2Score}/>
         <div style= {{marginTop: 10}}>Total Score: {this.state.totalScore2}</div>
         {this.state.roundScore === 10 ?
-          <div>The Winner is: {this.state.totalScore > this.state.totalScore2? 'Player 1' : 'Player2'}</div> : ''}
+          <div>The Winner is: {this.state.totalScore > this.state.totalScore2? 'Player 1' : 'Player 2'}</div> : ''}
+        {this.state.roundScore === 10 ?
+          <button style = {{marginTop: 10}} onClick = {(e) => {this.newGame(e)}} >New Game </button> : ''}
       </div>
 
     )
